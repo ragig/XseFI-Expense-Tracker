@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login | Expense Tracker{% endblock %}
+
+{% block content %}
+<section class="auth-view row justify-content-center align-items-center min-vh-75">
+    <div class="col-sm-10 col-md-7 col-lg-5">
+        <div class="card app-card auth-card">
+            <div class="card-body p-4 p-md-5">
+                <span class="auth-icon"><svg class="icon"><use href="#icon-lock"></use></svg></span>
+                <h1 class="h3 fw-bold mb-2">Login</h1>
+                <p class="text-secondary mb-4">Track spending, balances, and category usage from one place.</p>
+                <form method="post" class="vstack gap-3">
+                    <div>
+                        <label class="form-label fw-semibold">Username</label>
+                        <input class="form-control" type="text" name="username" required autocomplete="username">
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold">Password</label>
+                        <input class="form-control" type="password" name="password" required autocomplete="current-password">
+                    </div>
+                    <button class="btn btn-primary w-100" type="submit"><svg class="icon"><use href="#icon-lock"></use></svg>Login</button>
+                </form>
+                <p class="text-secondary mt-4 mb-0">New user? <a href="{{ url_for('register') }}">Create an account</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

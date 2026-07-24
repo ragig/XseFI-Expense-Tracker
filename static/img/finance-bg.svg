@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Abstract finance dashboard background">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fee7"/>
+      <stop offset="0.55" stop-color="#f6f8fc"/>
+      <stop offset="1" stop-color="#e8f8f4"/>
+    </linearGradient>
+    <linearGradient id="lime" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#84cc16" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#84cc16" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#0f766e" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#0f766e" stop-opacity="0.02"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#84cc16" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <circle cx="1280" cy="120" r="260" fill="url(#lime)"/>
+  <circle cx="170" cy="770" r="300" fill="url(#green)"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1020 560c80-120 164-164 250-132 60 22 100 5 141-74" stroke="#84cc16" stroke-opacity="0.2" stroke-width="18"/>
+    <path d="M210 260h210m-210 70h330m-330 70h260" stroke="#18202f" stroke-opacity="0.06" stroke-width="20"/>
+    <path d="M1180 620h170v-210h-170zM1222 620V496M1308 620V452" stroke="#0f766e" stroke-opacity="0.14" stroke-width="14"/>
+    <path d="M610 140a132 132 0 1 0 132 132h-132z" stroke="#84cc16" stroke-opacity="0.16" stroke-width="16"/>
+    <path d="M610 140v132h132" stroke="#0f766e" stroke-opacity="0.13" stroke-width="16"/>
+  </g>
+  <g fill="#18202f" fill-opacity="0.05" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">
+    <text x="1080" y="245">Rs.</text>
+    <text x="310" y="665">Budget</text>
+    <text x="780" y="775">Track</text>
+  </g>
+</svg>

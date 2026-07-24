@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}XseFi | Expense Tracker{% endblock %}
+{% block body_class %}landing-body{% endblock %}
+{% block main_class %}landing-main{% endblock %}
+
+{% block content %}
+<section class="landing-frame">
+    <header class="landing-nav">
+        <a class="landing-logo" href="{{ url_for('index') }}"><span>Xse</span>Fi</a>
+        <div class="landing-actions">
+            <a class="landing-outline" href="{{ url_for('index') }}">Home</a>
+            <a class="landing-primary nav-signin" href="{{ url_for('login') }}">Sign In</a>
+        </div>
+    </header>
+
+    <div class="landing-hero">
+        <div class="landing-copy">
+            <h1>Manage Your Expenses Easily With <span>XseFi</span></h1>
+            <p>
+                Track every payment, account balance, category, and spending trend from one calm
+                dashboard built for everyday money decisions.
+            </p>
+        </div>
+
+        <div class="finance-showcase" aria-label="Expense analytics preview">
+            <article class="metric-card expense-card">
+                <span>Total Expenses</span>
+                <strong>Rs 1,220.00</strong>
+                <small>This month</small>
+                <em>-10%</em>
+            </article>
+
+            <article class="metric-card revenue-card">
+                <span>Total Revenue</span>
+                <strong>Rs 8,675.00</strong>
+                <small>This month</small>
+                <em>+36%</em>
+            </article>
+
+            <article class="analytics-card">
+                <div class="analytics-head">
+                    <strong>Analytics</strong>
+                    <span>Revenue</span>
+                    <span>Expenses</span>
+                </div>
+                <div class="bar-chart">
+                    <i style="--height: 52%; --color: #34d399;"></i>
+                    <i style="--height: 31%; --color: #84cc16;"></i>
+                    <i style="--height: 68%; --color: #16a34a;"></i>
+                    <i style="--height: 12%; --color: #a3e635;"></i>
+                    <i style="--height: 60%; --color: #34d399;"></i>
+                    <i style="--height: 24%; --color: #65a30d;"></i>
+                    <i style="--height: 72%; --color: #16a34a;"></i>
+                    <i style="--height: 20%; --color: #84cc16;"></i>
+                </div>
+            </article>
+
+            <article class="mini-card">
+                <strong>VISA</strong>
+                <span>.... .... .... 7602</span>
+                <small>Emily Watson</small>
+            </article>
+
+            <article class="transactions-card">
+                <h2>Latest Transactions</h2>
+                <div class="transaction-row">
+                    <span class="transaction-icon income-icon">$</span>
+                    <div>
+                        <strong>Income: Salary Oct</strong>
+                        <small>Successfully</small>
+                    </div>
+                    <b>+Rs 1200</b>
+                </div>
+                <div class="transaction-row">
+                    <span class="transaction-icon bill-icon">%</span>
+                    <div>
+                        <strong>Electric Bill</strong>
+                        <small>Successfully</small>
+                    </div>
+                    <b>-Rs 480</b>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

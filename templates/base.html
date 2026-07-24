@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Expense Tracker{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+    <svg class="icon-sprite" aria-hidden="true">
+        <symbol id="icon-wallet" viewBox="0 0 24 24">
+            <path d="M19 7V6a2 2 0 0 0-2-2H5a3 3 0 0 0 0 6h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a3 3 0 0 1-3-3V7"/>
+            <path d="M16 14h.01"/>
+        </symbol>
+        <symbol id="icon-dashboard" viewBox="0 0 24 24">
+            <path d="M3 13h8V3H3v10Z"/>
+            <path d="M13 21h8V11h-8v10Z"/>
+            <path d="M13 3v6h8V3h-8Z"/>
+            <path d="M3 21h8v-6H3v6Z"/>
+        </symbol>
+        <symbol id="icon-card" viewBox="0 0 24 24">
+            <path d="M3 7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7Z"/>
+            <path d="M3 10h18"/>
+            <path d="M7 15h3"/>
+        </symbol>
+        <symbol id="icon-tag" viewBox="0 0 24 24">
+            <path d="m20 13-7 7L4 11V4h7l9 9Z"/>
+            <path d="M7.5 7.5h.01"/>
+        </symbol>
+        <symbol id="icon-receipt" viewBox="0 0 24 24">
+            <path d="M4 3v18l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V3H4Z"/>
+            <path d="M8 7h8"/>
+            <path d="M8 11h8"/>
+            <path d="M8 15h5"/>
+        </symbol>
+        <symbol id="icon-plus" viewBox="0 0 24 24">
+            <path d="M12 5v14"/>
+            <path d="M5 12h14"/>
+        </symbol>
+        <symbol id="icon-edit" viewBox="0 0 24 24">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"/>
+        </symbol>
+        <symbol id="icon-trash" viewBox="0 0 24 24">
+            <path d="M3 6h18"/>
+            <path d="M8 6V4h8v2"/>
+            <path d="M19 6l-1 14H6L5 6"/>
+            <path d="M10 11v5"/>
+            <path d="M14 11v5"/>
+        </symbol>
+        <symbol id="icon-log-out" viewBox="0 0 24 24">
+            <path d="M10 17l5-5-5-5"/>
+            <path d="M15 12H3"/>
+            <path d="M21 3v18"/>
+        </symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+            <path d="M4 19V5"/>
+            <path d="M4 19h16"/>
+            <path d="M8 16v-5"/>
+            <path d="M12 16V8"/>
+            <path d="M16 16v-7"/>
+        </symbol>
+        <symbol id="icon-trend" viewBox="0 0 24 24">
+            <path d="m3 17 6-6 4 4 8-8"/>
+            <path d="M14 7h7v7"/>
+        </symbol>
+        <symbol id="icon-coin" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M9.5 9.5c.6-1 1.7-1.5 3-1.3 1.4.2 2.3 1 2.3 2.1 0 1.4-1.1 1.9-2.8 2.3-1.6.4-2.5.8-2.5 2 0 1 .9 1.8 2.4 1.9 1.4.1 2.6-.5 3.1-1.6"/>
+            <path d="M12 6.5v2"/>
+            <path d="M12 16.5v2"/>
+        </symbol>
+        <symbol id="icon-user" viewBox="0 0 24 24">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 21a8 8 0 0 1 16 0"/>
+        </symbol>
+        <symbol id="icon-lock" viewBox="0 0 24 24">
+            <rect x="5" y="11" width="14" height="10" rx="2"/>
+            <path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+        </symbol>
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path d="m3 11 9-8 9 8"/>
+            <path d="M5 10v10h14V10"/>
+            <path d="M10 20v-6h4v6"/>
+        </symbol>
+        <symbol id="icon-alert" viewBox="0 0 24 24">
+            <path d="M12 3 2 20h20L12 3Z"/>
+            <path d="M12 9v5"/>
+            <path d="M12 17h.01"/>
+        </symbol>
+    </svg>
+    <nav class="navbar navbar-expand-lg app-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('dashboard') if current_user else url_for('index') }}">
+                <span class="brand-mark"><svg class="icon"><use href="#icon-wallet"></use></svg></span>
+                XseFi
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    {% if current_user %}
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'dashboard' else '' }}" href="{{ url_for('dashboard') }}"><svg class="icon"><use href="#icon-dashboard"></use></svg>Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint in ['accounts', 'update_account', 'delete_account'] else '' }}" href="{{ url_for('accounts') }}"><svg class="icon"><use href="#icon-card"></use></svg>Accounts</a></li>
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint in ['categories', 'update_category', 'delete_category'] else '' }}" href="{{ url_for('categories') }}"><svg class="icon"><use href="#icon-tag"></use></svg>Categories</a></li>
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint in ['expenses', 'edit_expense', 'update_expense', 'delete_expense'] else '' }}" href="{{ url_for('expenses') }}"><svg class="icon"><use href="#icon-receipt"></use></svg>Expenses</a></li>
+                        <li class="nav-item"><a class="btn btn-outline-danger ms-lg-2" href="{{ url_for('logout') }}"><svg class="icon"><use href="#icon-log-out"></use></svg>Logout</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'index' else '' }}" href="{{ url_for('index') }}"><svg class="icon"><use href="#icon-home"></use></svg>Home</a></li>
+                        <li class="nav-item"><a class="nav-link {{ 'active' if request.endpoint == 'login' else '' }}" href="{{ url_for('login') }}"><svg class="icon"><use href="#icon-lock"></use></svg>Login</a></li>
+                        <li class="nav-item"><a class="btn btn-primary ms-lg-2 {{ 'active' if request.endpoint == 'register' else '' }}" href="{{ url_for('register') }}"><svg class="icon"><use href="#icon-user"></use></svg>Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container app-main {% block main_class %}{% endblock %}">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <section class="mb-4">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'danger' else 'warning' if category == 'warning' else 'success' if category == 'success' else 'info' }} alert-dismissible fade show" role="alert">
+                            <svg class="icon me-2"><use href="{{ '#icon-alert' if category in ['danger', 'warning'] else '#icon-wallet' }}"></use></svg>
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                </section>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

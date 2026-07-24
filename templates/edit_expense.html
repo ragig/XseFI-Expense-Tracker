@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Expense | Expense Tracker{% endblock %}
+
+{% block content %}
+<section class="page-hero mb-4">
+    <div>
+        <p class="text-uppercase text-secondary fw-bold small mb-1">Update saved spending</p>
+        <h1 class="fw-bold mb-1">Edit Expense</h1>
+        <p class="text-secondary mb-0">Adjust the category, account, amount, date, or note.</p>
+    </div>
+</section>
+
+<section class="row justify-content-center">
+    <div class="col-lg-7 col-xl-6">
+        <article class="card app-card edit-expense-card">
+            <div class="card-header bg-white border-0 pb-0">
+                <h2 class="section-title mb-1"><span class="title-icon"><svg class="icon"><use href="#icon-edit"></use></svg></span>Expense Details</h2>
+                <p class="text-secondary small mb-0">Changes will update your account balance.</p>
+            </div>
+            <div class="card-body">
+                <form method="post" class="edit-expense-form">
+                    <div class="edit-field edit-field-wide">
+                        <label class="form-label fw-semibold">Account</label>
+                        <select class="form-select edit-control" name="account_id" required>
+                            {% for account in accounts %}
+                                <option value="{{ account['id'] }}" {{ 'selected' if expense['account_id'] == account['id'] else '' }}>
+                                    {{ account["name"] }} - {{ account["type"] }} - Rs. {{ "%.2f"|format(account["balance"]) }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="edit-field">
+                        <label class="form-label fw-semibold">Category</label>
+                        <select class="form-select edit-control" name="category" required>
+                            {% for category in categories %}
+                                <option value="{{ category['name'] }}" {{ 'selected' if expense['category'] == category['name'] else '' }}>{{ category["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="edit-field">
+                        <label class="form-label fw-semibold">Amount</label>
+                        <div class="input-group edit-money-control">
+                            <span class="input-group-text edit-money-prefix">Rs.</span>
+                            <input class="form-control edit-control" type="number" name="amount" min="0.01" step="0.01" value="{{ '%.2f'|format(expense['amount']) }}" required>
+                        </div>
+                    </div>
+                    <div class="edit-field">
+                        <label class="form-label fw-semibold">Date</label>
+                        <input class="form-control edit-control" type="date" name="spent_on" value="{{ expense['spent_on'] }}" required>
+                    </div>
+                    <div class="edit-field edit-field-wide">
+                        <label class="form-label fw-semibold">Note</label>
+                        <textarea class="form-control edit-control edit-note-control" name="note" rows="3" placeholder="Optional">{{ expense["note"] or "" }}</textarea>
+                    </div>
+                    <div class="edit-actions">
+                        <button class="btn btn-primary edit-submit-button" type="submit"><svg class="icon"><use href="#icon-edit"></use></svg>Update Expense</button>
+                        <a class="btn btn-outline-secondary edit-cancel-button" href="{{ url_for('expenses') }}">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

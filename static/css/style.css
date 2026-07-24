@@ -1,0 +1,2616 @@
+/* Shared theme colors used by every template through base.html. */
+:root {
+    --bg: #f7fbf1;
+    --surface: #ffffff;
+    --text: #17230c;
+    --muted: #667085;
+    --line: #d8e8c7;
+    --primary: #84cc16;
+    --primary-dark: #4d7c0f;
+    --accent: #166534;
+    --soft-lime: #ecfccb;
+    --soft-green: #e7f8f3;
+    --soft-amber: #fff4db;
+    --danger: #cc0303;
+    --warning-bg: #fff3d1;
+    --warning-text: #970202;
+    --success-bg: #def7e8;
+    --success-text: #116139;
+}
+
+/* Shared reset for all pages: keeps element sizing predictable. */
+* {
+    box-sizing: border-box;
+}
+
+/* Shared page background and default text style for all templates. */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    background-image:
+        linear-gradient(180deg, rgba(247, 251, 241, 0.26), rgba(247, 251, 241, 0.88) 360px),
+        url("../img/finance-bg.svg");
+    background-attachment: fixed, fixed;
+    background-position: center top, center top;
+    background-repeat: no-repeat, no-repeat;
+    background-size: cover, cover;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+/* Older navigation layout kept for pages that may still use a custom topbar. */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px clamp(18px, 5vw, 56px);
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.nav a {
+    color: var(--text);
+    font-weight: 700;
+}
+
+/* Shared button style used by older non-Bootstrap page sections. */
+.nav-button,
+.button,
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: #fff !important;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+button:hover,
+.button:hover,
+.nav-button:hover {
+    background: var(--primary-dark);
+}
+
+.danger-button {
+    background: var(--danger);
+}
+
+.danger-button:hover {
+    background: #8f2f21;
+}
+
+/* Older page wrapper used by simple full-width page layouts. */
+.page {
+    width: min(1160px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 28px 0 48px;
+}
+
+/* Older page heading/action row used by list pages. */
+.page-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 22px;
+}
+
+.head-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* Older filter tabs for switching page views or categories. */
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-tabs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-weight: 800;
+}
+
+.filter-tabs a.active {
+    border-color: var(--primary);
+    background: #f0fddb;
+    color: var(--primary-dark);
+}
+
+.eyebrow {
+    margin: 0 0 6px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+h1 {
+    font-size: clamp(30px, 5vw, 44px);
+}
+
+h2 {
+    font-size: 20px;
+}
+
+/* login.html and register.html: older centered authentication panel styles. */
+.auth-shell {
+    display: grid;
+    min-height: calc(100vh - 145px);
+    place-items: center;
+}
+
+.auth-panel,
+.panel,
+.stat-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.auth-panel {
+    width: min(420px, 100%);
+    padding: 28px;
+}
+
+.muted,
+.empty,
+.small-link {
+    color: var(--muted);
+}
+
+/* Shared form spacing for older form layouts. */
+.form {
+    display: grid;
+    gap: 16px;
+    margin-top: 22px;
+}
+
+label {
+    display: grid;
+    gap: 7px;
+    font-weight: 800;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 12px 13px;
+    background: #fff;
+    color: var(--text);
+    font: inherit;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* base.html: flash message styling for success, warning, danger, and info states. */
+.flash-list {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+
+.flash,
+.alert-band {
+    border-radius: 8px;
+    padding: 13px 15px;
+    font-weight: 700;
+}
+
+.flash-success {
+    background: var(--success-bg);
+    color: var(--success-text);
+}
+
+.flash-danger,
+.flash-warning,
+.alert-band {
+    background: var(--warning-bg);
+    color: var(--warning-text);
+}
+
+.flash-info {
+    background: #ecfccb;
+    color: #3f6212;
+}
+
+.alert-band {
+    margin-bottom: 20px;
+}
+
+/* dashboard.html: older summary statistic card grid. */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.stat-card {
+    display: grid;
+    gap: 8px;
+    padding: 20px;
+}
+
+.stat-card span,
+.list-row span {
+    color: var(--muted);
+}
+
+.stat-card strong {
+    font-size: 28px;
+}
+
+/* dashboard.html and other data pages: older two-column content layout. */
+.content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.7fr);
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.panel {
+    padding: 20px;
+}
+
+.panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.list {
+    display: grid;
+    gap: 10px;
+}
+
+.list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.list-row div {
+    display: grid;
+    gap: 4px;
+}
+
+/* categories.html: older category list and inline edit row styles. */
+.category-list {
+    display: grid;
+    gap: 14px;
+}
+
+.category-row {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 13px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.inline-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inline-form input {
+    min-width: 0;
+}
+
+.category-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.danger-text {
+    color: var(--danger);
+}
+
+/* accounts.html, categories.html, expenses.html, dashboard.html: older responsive table wrapper. */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 740px;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 13px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+}
+
+th {
+    color: var(--muted);
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+canvas {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* login.html and register.html: keeps auth forms vertically comfortable. */
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* Bootstrap button reset so Bootstrap buttons match the app theme. */
+.btn {
+    min-height: auto;
+    border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+    border-radius: var(--bs-btn-border-radius);
+    padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+    background-color: var(--bs-btn-bg);
+    color: var(--bs-btn-color) !important;
+    font-weight: var(--bs-btn-font-weight);
+}
+
+.btn:hover {
+    border-color: var(--bs-btn-hover-border-color);
+    background-color: var(--bs-btn-hover-bg);
+    color: var(--bs-btn-hover-color) !important;
+}
+
+.btn-close {
+    min-height: auto;
+    padding: 0.5rem;
+    background: transparent var(--bs-btn-close-bg) center / 1em auto no-repeat;
+}
+
+/* base.html: main content container wrapped around every page block. */
+.app-main {
+    padding-top: 1.25rem;
+    padding-bottom: 1.75rem;
+}
+
+/* base.html: sticky app navigation shared by signed-in and signed-out pages. */
+.app-navbar {
+    border-bottom: 1px solid rgba(217, 222, 234, 0.9);
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94)),
+        url("../img/card-texture.svg");
+    background-position: center, right center;
+    background-size: auto, 560px 240px;
+    box-shadow: 0 10px 28px rgba(24, 32, 47, 0.06);
+    backdrop-filter: blur(14px);
+}
+
+.navbar-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: var(--text) !important;
+}
+
+.brand-mark {
+    display: inline-grid;
+    width: 2.25rem;
+    height: 2.25rem;
+    place-items: center;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.navbar .nav-link {
+    border-radius: 8px;
+    color: #465064;
+    font-weight: 700;
+    padding-inline: 0.8rem;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    background: var(--soft-lime);
+    color: var(--primary-dark);
+}
+
+/* dashboard.html, accounts.html, categories.html, expenses.html, edit_expense.html: page title hero. */
+.page-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(217, 222, 234, 0.9);
+    border-radius: 8px;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+        url("../img/card-texture.svg");
+    background-position: center, right center;
+    background-repeat: no-repeat;
+    background-size: auto, 560px 240px;
+    box-shadow: 0 16px 36px rgba(24, 32, 47, 0.07);
+}
+
+.page-hero h1 {
+    font-size: clamp(2rem, 4vw, 2.85rem);
+}
+
+/* Shared card styling used by forms, tables, dashboard widgets, and auth panels. */
+.app-card {
+    border: 1px solid rgba(217, 222, 234, 0.92) !important;
+    border-radius: 8px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.94)),
+        url("../img/card-texture.svg");
+    background-position: center, right top;
+    background-repeat: no-repeat;
+    background-size: auto, 420px 180px;
+    box-shadow: 0 18px 42px rgba(24, 32, 47, 0.08);
+    overflow: hidden;
+}
+
+.app-card .card-header {
+    padding: 1.25rem 1.25rem 0;
+    background: transparent !important;
+}
+
+.app-card .card-body {
+    padding: 1.25rem;
+    background: transparent;
+}
+
+.form-control,
+.form-select,
+.input-group-text {
+    border-color: #cfd7e6;
+    border-radius: 8px;
+}
+
+.input-group > .form-control,
+.input-group > .form-select,
+.input-group > .input-group-text {
+    border-radius: 8px;
+}
+
+.input-group > :not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.input-group > :not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(132, 204, 22, 0.2);
+}
+
+.btn {
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* accounts.html, categories.html, expenses.html, dashboard.html: common data table styling. */
+.app-table {
+    min-width: 720px;
+}
+
+.app-table thead th {
+    border-bottom: 0;
+    color: #5b6678;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.app-table tbody td {
+    border-color: #edf0f6;
+    padding-top: 0.95rem;
+    padding-bottom: 0.95rem;
+}
+
+.app-table tbody tr:hover {
+    background: #fbfff5;
+}
+
+.badge.text-bg-primary-subtle {
+    border: 1px solid rgba(132, 204, 22, 0.28);
+    background: var(--soft-lime) !important;
+}
+
+/* Shared empty-state box used when a table, chart, account, or expense list has no data. */
+.empty-state {
+    display: grid;
+    min-height: 9rem;
+    place-items: center;
+    border: 1px dashed #cfd7e6;
+    border-radius: 8px;
+    background: #fbfff5;
+    text-align: center;
+}
+
+/* accounts.html: radio-like options for choosing cash in hand or account name. */
+.account-choice {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    border: 1px solid #cfd7e6;
+    border-radius: 8px;
+    padding: 0.85rem 0.95rem;
+    background: #fff;
+    color: var(--text);
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.account-choice:has(input:checked) {
+    border-color: var(--primary);
+    background: var(--soft-lime);
+    color: var(--primary-dark);
+}
+
+.account-choice input {
+    width: auto;
+}
+
+/* home.html and get_started.html: landing page color aliases. */
+:root {
+    --ink: #1f2f12;
+    --paper: #ffffff;
+    --coral: #84cc16;
+    --coral-deep: #4d7c0f;
+    --sage: #ecfccb;
+    --sage-dark: #3f6212;
+}
+
+/* home.html and get_started.html: full-screen landing background from body_class. */
+.landing-body {
+    background:
+        radial-gradient(circle at 18% 16%, rgba(132, 204, 22, 0.22), transparent 32%),
+        linear-gradient(135deg, #ffffff 0%, #f7fee7 46%, #ecfccb 100%);
+}
+
+.landing-body .app-navbar {
+    display: none;
+}
+
+/* home.html and get_started.html: removes normal app-page framing for landing screens. */
+.landing-main {
+    width: 100%;
+    max-width: none;
+    padding: clamp(0.5rem, 1.5vw, 1.25rem);
+}
+
+/* home.html and get_started.html: outer frames for the marketing and start screens. */
+.landing-frame,
+.start-frame {
+    width: min(1640px, 100%);
+    min-height: min(680px, calc(100vh - clamp(1rem, 3vw, 2.5rem)));
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(132, 204, 22, 0.22);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(247, 254, 231, 0.94));
+    color: var(--ink);
+    box-shadow: 0 32px 80px rgba(31, 47, 18, 0.14);
+}
+
+.landing-frame {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(0.85rem, 1.5vw, 1.5rem) clamp(1rem, 2.8vw, 2.8rem);
+}
+
+/* home.html: top landing navigation with logo and sign-in actions. */
+.landing-nav {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.landing-logo {
+    color: var(--ink);
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.landing-logo:hover,
+.landing-links a:hover,
+.landing-login:hover,
+.landing-demo:hover {
+    color: var(--coral-deep);
+}
+
+.landing-logo span,
+.landing-copy h1 span {
+    color: var(--coral);
+}
+
+.landing-links,
+.landing-actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 3.2rem);
+}
+
+.landing-links {
+    justify-content: center;
+}
+
+.landing-links a,
+.landing-login,
+.landing-demo {
+    color: var(--ink);
+    font-weight: 800;
+}
+
+.landing-outline,
+.landing-primary {
+    display: inline-flex;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(132, 204, 22, 0.44);
+    padding: 0 1.9rem;
+    color: var(--coral);
+    font-weight: 900;
+}
+
+.landing-outline:hover {
+    background: rgba(132, 204, 22, 0.12);
+    color: var(--coral-deep);
+}
+
+/* home.html: two-column hero with copy and finance preview art. */
+.landing-hero {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.9fr) minmax(430px, 1fr);
+    align-items: center;
+    gap: clamp(1.25rem, 3.5vw, 3.5rem);
+    padding: clamp(1rem, 2.6vw, 2.6rem) 0 clamp(0.4rem, 1.2vw, 1rem);
+}
+
+.landing-copy h1 {
+    max-width: 780px;
+    color: var(--ink);
+    font-size: clamp(2.85rem, 6.4vw, 6.6rem);
+    font-weight: 500;
+    line-height: 1.06;
+}
+
+.landing-copy p {
+    max-width: 650px;
+    margin: 1rem 0 0;
+    color: #4f6537;
+    font-size: clamp(1rem, 1.3vw, 1.16rem);
+    line-height: 1.55;
+}
+
+.landing-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.landing-primary {
+    border: 0;
+    background: var(--coral);
+    color: #fff;
+}
+
+.landing-primary:hover {
+    background: var(--coral-deep);
+    color: #fff;
+}
+
+/* home.html: decorative finance dashboard preview on the landing hero. */
+.finance-showcase {
+    position: relative;
+    min-height: 430px;
+}
+
+.metric-card,
+.analytics-card,
+.mini-card,
+.transactions-card {
+    position: absolute;
+    box-shadow: 0 18px 45px rgba(31, 47, 18, 0.12);
+}
+
+.metric-card {
+    display: grid;
+    width: clamp(220px, 22vw, 330px);
+    min-height: 116px;
+    gap: 0.45rem;
+    padding: 1.1rem;
+    color: var(--ink);
+}
+
+.metric-card span,
+.metric-card small {
+    color: #6b7f55;
+    font-weight: 700;
+}
+
+.metric-card strong {
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+}
+
+.metric-card em {
+    position: absolute;
+    top: 3.6rem;
+    right: 1.5rem;
+    color: #4f7d1a;
+    font-style: normal;
+    font-weight: 800;
+}
+
+.expense-card {
+    top: 0;
+    left: 8%;
+    background: var(--sage);
+}
+
+.expense-card::after,
+.revenue-card::after {
+    position: absolute;
+    right: 1.25rem;
+    bottom: 0.9rem;
+    color: var(--coral);
+    content: "->";
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.revenue-card {
+    right: 30%;
+    bottom: 84px;
+    z-index: 3;
+    background: var(--coral);
+    color: #fff;
+}
+
+.analytics-card {
+    top: 56px;
+    right: 0;
+    z-index: 2;
+    width: clamp(310px, 31vw, 450px);
+    padding: 0.9rem 1.1rem 1rem;
+    background: #fff;
+    color: var(--ink);
+}
+
+.analytics-head {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.78rem;
+}
+
+.analytics-head strong {
+    margin-right: auto;
+    font-size: 1rem;
+}
+
+.analytics-head span {
+    color: #6b7f55;
+}
+
+.bar-chart {
+    display: grid;
+    height: 132px;
+    grid-template-columns: repeat(8, 1fr);
+    align-items: end;
+    gap: 0.9rem;
+    border-left: 1px solid #ecfccb;
+    border-bottom: 1px solid #ecfccb;
+    padding-left: 1rem;
+}
+
+.bar-chart i {
+    height: var(--height);
+    background: var(--color);
+    border-radius: 4px 4px 0 0;
+}
+
+.mini-card {
+    left: 0;
+    bottom: 0;
+    display: grid;
+    width: clamp(250px, 19vw, 280px);
+    min-height: 104px;
+    gap: 0.8rem;
+    padding: 1rem;
+    background: var(--sage);
+    color: var(--ink);
+}
+
+.mini-card span {
+    letter-spacing: 0.38rem;
+    font-weight: 900;
+}
+
+.mini-card small {
+    color: #6b7f55;
+}
+
+.transactions-card {
+    right: 0.4rem;
+    bottom: 0;
+    width: clamp(300px, 31vw, 420px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.transactions-card h2 {
+    margin-bottom: 0.7rem;
+    color: var(--ink);
+    font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.transaction-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(132, 204, 22, 0.28);
+}
+
+.transaction-row strong,
+.transaction-row small {
+    display: block;
+}
+
+.transaction-row small {
+    color: #6b7f55;
+}
+
+.transaction-row b {
+    color: var(--coral);
+}
+
+.transaction-icon {
+    display: inline-grid;
+    width: 2.2rem;
+    height: 2.2rem;
+    place-items: center;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 900;
+}
+
+.income-icon {
+    background: var(--sage);
+}
+
+.bill-icon {
+    background: var(--coral);
+}
+
+/* home.html: faint brand/partner strip at the bottom of the landing frame. */
+.partner-strip {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.5rem;
+    align-items: center;
+    padding-top: 2rem;
+    color: rgba(31, 47, 18, 0.22);
+    font-size: clamp(1rem, 1.9vw, 1.8rem);
+    font-weight: 900;
+    text-align: center;
+}
+
+/* get_started.html: centered start page frame. */
+.start-frame {
+    display: grid;
+    align-content: center;
+    padding: clamp(1rem, 3vw, 3.5rem);
+}
+
+/* get_started.html: logo and navigation links above the start options. */
+.start-top {
+    position: absolute;
+    top: clamp(1rem, 3vw, 3.5rem);
+    left: clamp(1rem, 3vw, 3.5rem);
+    right: clamp(1rem, 3vw, 3.5rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.start-logo {
+    position: absolute;
+    margin-top: clamp(1.5rem, 5vw, 5.5rem);
+    margin-left: clamp(1.5rem, 5vw, 5.5rem);
+}
+
+/* get_started.html: copy column plus action option column. */
+.start-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 480px);
+    gap: clamp(2rem, 8vw, 7rem);
+    align-items: center;
+}
+
+.start-kicker {
+    margin: 0 0 1rem;
+    color: var(--coral);
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.start-copy h1 {
+    max-width: 760px;
+    color: var(--ink);
+    font-size: clamp(3rem, 6.4vw, 6.6rem);
+    font-weight: 500;
+    line-height: 1.04;
+}
+
+.start-copy p:not(.start-kicker) {
+    max-width: 610px;
+    margin-top: 1.5rem;
+    color: #4f6537;
+    font-size: 1.08rem;
+    line-height: 1.75;
+}
+
+.start-panel {
+    display: grid;
+    gap: 1rem;
+}
+
+.start-option {
+    display: grid;
+    gap: 0.45rem;
+    border: 1px solid rgba(132, 204, 22, 0.26);
+    padding: 1.5rem;
+    background: #fff;
+    color: var(--ink);
+}
+
+.start-option:hover {
+    border-color: rgba(132, 204, 22, 0.82);
+    color: var(--ink);
+}
+
+.start-option span,
+.start-option small {
+    color: #6b7f55;
+}
+
+.start-option strong {
+    font-size: 1.55rem;
+}
+
+.primary-option {
+    border-color: transparent;
+    background: var(--coral);
+    color: #fff;
+}
+
+.primary-option span,
+.primary-option small {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+/* Responsive landing/start adjustments for home.html and get_started.html. */
+@media (max-width: 1100px) {
+    .landing-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .landing-links,
+    .landing-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .landing-hero,
+    .start-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .finance-showcase {
+        min-height: 560px;
+    }
+
+    .expense-card {
+        left: 0;
+    }
+
+    .analytics-card {
+        top: 84px;
+    }
+
+    .revenue-card {
+        right: auto;
+        left: 10%;
+        bottom: 136px;
+    }
+
+    .mini-card {
+        bottom: 30px;
+    }
+
+    .transactions-card {
+        bottom: 0;
+    }
+}
+
+/* Responsive shared layout adjustments for tablets and phones. */
+@media (max-width: 800px) {
+    .topbar,
+    .page-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-row,
+    .inline-form {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .inline-form {
+        display: grid;
+    }
+
+    .auth-shell {
+        min-height: auto;
+        padding-top: 28px;
+    }
+
+    .page-hero {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 1.1rem;
+    }
+
+    .landing-main {
+        padding: 0.65rem;
+    }
+
+    .landing-frame,
+    .start-frame {
+        min-height: auto;
+    }
+
+    .landing-frame {
+        padding: 0.9rem;
+    }
+
+    .landing-links {
+        display: none;
+    }
+
+    .landing-actions {
+        gap: 0.8rem;
+    }
+
+    .landing-outline,
+    .landing-primary {
+        min-height: 2.7rem;
+        padding: 0 1rem;
+    }
+
+    .landing-hero {
+        padding-top: 1.5rem;
+    }
+
+    .landing-copy h1,
+    .start-copy h1 {
+        font-size: clamp(2.25rem, 10vw, 3.4rem);
+    }
+
+    .landing-copy p {
+        margin-top: 0.75rem;
+        line-height: 1.45;
+    }
+
+    .finance-showcase {
+        min-height: auto;
+        display: grid;
+        gap: 0.7rem;
+    }
+
+    .metric-card,
+    .analytics-card,
+    .mini-card {
+        min-height: auto;
+        padding: 0.85rem;
+    }
+
+    .bar-chart {
+        height: 105px;
+    }
+
+    .metric-card,
+    .analytics-card,
+    .mini-card,
+    .transactions-card {
+        position: relative;
+        inset: auto;
+        width: 100%;
+    }
+
+    .transactions-card {
+        margin-top: 0.5rem;
+    }
+
+    .partner-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .start-frame {
+        padding: 5rem 1.25rem 1.25rem;
+    }
+
+    .start-logo {
+        margin-top: 1.25rem;
+        margin-left: 1.25rem;
+    }
+}
+
+/* Professional app polish
+   These later rules override earlier shared styles and Bootstrap defaults.
+   They apply to base.html plus dashboard.html, accounts.html, categories.html,
+   expenses.html, edit_expense.html, login.html, register.html, home.html,
+   and get_started.html. */
+:root {
+    --bg: #f7fbf1;
+    --surface: #ffffff;
+    --text: #172033;
+    --muted: #687386;
+    --line: #dfe9d3;
+    --primary: #84cc16;
+    --primary-dark: #4d7c0f;
+    --accent: #16a34a;
+    --accent-soft: #dcfce7;
+    --amber: #f59e0b;
+    --rose: #e25563;
+    /* Small action buttons such as dashboard.html "Manage", "View all",
+       expenses.html "Edit", and accounts.html "Update". Change these
+       two values when you want those small outline actions to use
+       another theme color. */
+    --small-action: #4d7c0f;
+    --small-action-hover: #65a30d;
+    --shadow-sm: 0 10px 26px rgba(23, 32, 51, 0.07);
+    --shadow-md: 0 20px 46px rgba(23, 32, 51, 0.1);
+    --shadow-lg: 0 36px 80px rgba(23, 32, 51, 0.16);
+}
+
+/* All templates: final app font and layered green finance background. */
+body {
+    color: var(--text);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background:
+        linear-gradient(135deg, rgba(236, 252, 203, 0.55) 0 12%, transparent 12% 100%),
+        linear-gradient(315deg, rgba(220, 252, 231, 0.58) 0 10%, transparent 10% 100%),
+        linear-gradient(180deg, rgba(247, 251, 241, 0.9), rgba(247, 251, 241, 0.98) 420px),
+        radial-gradient(circle at 12% 12%, rgba(132, 204, 22, 0.16), transparent 28%),
+        radial-gradient(circle at 92% 8%, rgba(22, 163, 74, 0.12), transparent 30%),
+        #f7fbf1;
+}
+
+/* base.html: hidden SVG symbol sprite; individual icons use .icon below. */
+.icon-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: -0.15em;
+}
+
+/* Shared animation polish for buttons, nav links, landing links, choices, and cards. */
+.btn,
+.nav-link,
+.landing-primary,
+.landing-outline,
+.start-option,
+.account-choice,
+.app-card {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    box-shadow: none;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary,
+.landing-primary {
+    box-shadow: 0 12px 24px rgba(132, 204, 22, 0.24);
+}
+
+.btn-primary {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, var(--primary), #65a30d);
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    border-color: var(--primary-dark);
+    background: linear-gradient(135deg, #65a30d, var(--primary-dark));
+    box-shadow: 0 16px 30px rgba(77, 124, 15, 0.22);
+    color: #fff;
+}
+
+.btn-success {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, var(--accent), #15803d);
+    box-shadow: 0 12px 24px rgba(22, 163, 74, 0.18);
+}
+
+.btn-success:hover {
+    border-color: #15803d;
+    background: #15803d;
+}
+
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-danger {
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.btn-outline-primary {
+    /* dashboard.html: "Manage", "View all", and period filter outline buttons.
+       expenses.html: "Edit" button.
+       accounts.html: "Update" button.
+       These Bootstrap variables remove the default blue primary color. */
+    --bs-btn-color: var(--small-action);
+    --bs-btn-border-color: var(--primary);
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: var(--small-action-hover);
+    --bs-btn-hover-border-color: var(--small-action);
+    --bs-btn-focus-shadow-rgb: 132, 204, 22;
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--small-action);
+    --bs-btn-active-border-color: var(--small-action);
+    border-color: var(--primary);
+    color: var(--small-action) !important;
+    box-shadow: inset 0 0 0 1px rgba(236, 252, 203, 0.8);
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    border-color: var(--small-action);
+    background: linear-gradient(135deg, var(--primary), var(--small-action-hover));
+    box-shadow: 0 12px 24px rgba(132, 204, 22, 0.2);
+    color: #fff !important;
+}
+
+.bg-primary-subtle,
+.text-bg-primary-subtle {
+    background-color: var(--soft-lime) !important;
+}
+
+.badge.text-bg-primary-subtle,
+.text-bg-primary-subtle {
+    border: 1px solid rgba(132, 204, 22, 0.34);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.68);
+}
+
+.text-primary-emphasis {
+    color: var(--primary-dark) !important;
+}
+
+/* base.html: final navbar theme that overrides the earlier navbar block. */
+.app-navbar {
+    border-bottom: 1px solid rgba(132, 204, 22, 0.24);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 34px rgba(77, 124, 15, 0.08);
+    backdrop-filter: blur(16px);
+}
+
+.navbar-brand {
+    letter-spacing: 0;
+}
+
+.brand-mark,
+.title-icon,
+.auth-icon,
+.stat-icon {
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+}
+
+.brand-mark {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    box-shadow: 0 10px 24px rgba(132, 204, 22, 0.26);
+}
+
+.navbar .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.navbar .nav-link.active {
+    background: rgba(236, 252, 203, 0.72);
+    border-radius: 8px;
+}
+
+/* base.html: final framed content area for all non-landing pages. */
+.app-main {
+    position: relative;
+    width: min(1240px, calc(100% - 1rem));
+    margin-top: 1rem;
+    margin-bottom: 1.25rem;
+    padding: clamp(0.85rem, 2vw, 1.35rem);
+    border: 1px solid rgba(132, 204, 22, 0.2);
+    border-radius: 8px;
+    background:
+        linear-gradient(90deg, rgba(236, 252, 203, 0.56), transparent 22%, transparent 78%, rgba(220, 252, 231, 0.52)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(250, 255, 244, 0.78));
+    box-shadow: 0 24px 70px rgba(77, 124, 15, 0.1);
+    overflow: hidden;
+}
+
+.app-main::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.45rem;
+    background: linear-gradient(90deg, var(--primary), var(--accent), #bef264);
+    content: "";
+}
+
+.app-main::after {
+    position: absolute;
+    inset: 0.45rem auto 0 0;
+    width: 0.45rem;
+    background: linear-gradient(180deg, rgba(132, 204, 22, 0.5), rgba(22, 163, 74, 0.12));
+    content: "";
+}
+
+.app-main > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* home.html and get_started.html: undo the framed .app-main style for landing pages. */
+.landing-main {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
+.landing-main::before,
+.landing-main::after {
+    content: none;
+}
+
+/* accounts.html and expenses.html: wider compact layout for form + table screens. */
+.app-main.compact-main {
+    width: min(1360px, calc(100% - 0.75rem));
+    max-width: none;
+}
+
+/* dashboard.html, accounts.html, categories.html, expenses.html, edit_expense.html: final hero styling. */
+.page-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 142px;
+    border: 1px solid rgba(132, 204, 22, 0.28);
+    border-radius: 8px;
+    background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.98), rgba(248, 253, 241, 0.94) 54%, rgba(220, 252, 231, 0.82)),
+        url("../img/card-texture.svg");
+    box-shadow: var(--shadow-md);
+}
+
+.page-hero::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0.55rem;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    content: "";
+}
+
+.page-hero::after {
+    position: absolute;
+    right: clamp(1rem, 5vw, 4rem);
+    bottom: 1rem;
+    width: 14rem;
+    height: 5.5rem;
+    border: 1px solid rgba(132, 204, 22, 0.2);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, rgba(236, 252, 203, 0.62), rgba(220, 252, 231, 0.24));
+    content: "";
+    transform: skewX(-10deg);
+}
+
+.page-hero > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* dashboard.html: aligns the hero title with the analysis buttons. */
+.dashboard-hero {
+    align-items: flex-end;
+}
+
+.dashboard-actions {
+    align-items: center;
+}
+
+.dashboard-filter-bar {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dashboard-period-form {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    width: auto;
+    padding: 0.35rem;
+    border: 1px solid rgba(132, 204, 22, 0.28);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 10px 22px rgba(77, 124, 15, 0.08);
+}
+
+.dashboard-period-label {
+    display: inline-flex;
+    width: auto;
+    margin: 0;
+    padding-inline: 0.45rem 0.15rem;
+    color: #3f6212;
+    font-size: 0.85rem;
+    font-weight: 800;
+}
+
+.dashboard-period-form .dashboard-period-select {
+    width: 9.25rem;
+    min-height: 2.4rem;
+    border: 2px solid var(--primary);
+    background-color: #d9f99d;
+    color: #365314;
+    font-weight: 900;
+    box-shadow: 0 0 0 3px rgba(98, 141, 33, 0.753), 0 10px 20px rgba(127, 226, 165, 0.897);
+}
+
+.dashboard-period-form .dashboard-period-select:hover,
+.dashboard-period-form .dashboard-period-select:focus {
+    border-color: #4d7c0f;
+    background-color: #bef264;
+    color: #1a2e05;
+    box-shadow: 0 0 0 4px rgba(132, 204, 22, 0.24), 0 14px 26px rgba(77, 124, 15, 0.2);
+}
+
+.dashboard-date-input {
+    width: 10.5rem;
+    min-height: 2.4rem;
+    border-color: rgba(132, 204, 22, 0.35);
+    color: #365314;
+    font-weight: 700;
+}
+
+.dashboard-day-details-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-day-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.dashboard-day-summary > div {
+    padding: 0.85rem;
+    border: 1px solid rgba(132, 204, 22, 0.22);
+    border-radius: 8px;
+    background: rgba(247, 254, 231, 0.72);
+}
+
+.dashboard-day-summary span,
+.dashboard-day-summary strong {
+    display: block;
+}
+
+.dashboard-day-summary strong {
+    margin-top: 0.25rem;
+    color: #17230c;
+    font-size: 1.25rem;
+}
+
+.dashboard-day-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recent-expenses-head {
+    flex-wrap: wrap;
+}
+
+.recent-expenses-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.recent-expenses-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.recent-category-form {
+    min-width: 10rem;
+}
+
+.recent-expenses-card,
+.recent-expenses-card .card-body {
+    overflow: visible;
+}
+
+.recent-expenses-card {
+    z-index: 50;
+    overflow: visible;
+}
+
+.recent-category-select {
+    width: 100%;
+    min-height: 2.35rem;
+    border: 0;
+    border-radius: 8px;
+    padding: 0 2.25rem 0 0.9rem;
+    background-color: #188c43 !important;
+    background-image: var(--bs-form-select-bg-img) !important;
+    color: #fff;
+    font-weight: 800;
+    box-shadow: 0 10px 20px rgba(22, 101, 52, 0.16);
+    -webkit-text-fill-color: #fff;
+}
+
+.recent-category-select:hover,
+.recent-category-select:focus {
+    background-color: #166534 !important;
+    color: #fff !important;
+    box-shadow: 0 0 0 0.18rem rgba(34, 197, 94, 0.22), 0 12px 24px rgba(22, 101, 52, 0.18);
+    -webkit-text-fill-color: #fff;
+}
+
+.recent-category-select option {
+    background: #fff;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+.recent-category-select option:checked,
+.recent-category-select option:hover,
+.recent-category-select option:focus {
+    background: #166534;
+    color: #fff;
+}
+
+.page-hero h1 {
+    color: #17230c;
+    letter-spacing: 0;
+}
+
+/* accounts.html and expenses.html: shorter hero for dense management pages. */
+.compact-hero {
+    min-height: auto;
+    padding: 1rem 1.15rem;
+}
+
+.compact-hero h1 {
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+}
+
+/* accounts.html and expenses.html: prevents two-column forms and tables from overflowing. */
+.account-expense-layout,
+.account-expense-layout > [class*="col-"],
+.account-expense-layout .card,
+.account-expense-layout .card-body,
+.responsive-table-wrap {
+    min-width: 0;
+}
+
+/* allow dropdowns inside the expenses card to extend outside the card bounds */
+.account-expense-layout .card,
+.account-expense-layout .app-card,
+.account-expense-layout .card-header {
+    overflow: visible;
+}
+
+.expense-form-toggle {
+    white-space: nowrap;
+}
+
+.expense-entry-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.85rem;
+    align-items: end;
+}
+
+.expense-note-field {
+    grid-column: span 3;
+}
+
+.expense-save-button {
+    min-height: 2.8rem;
+}
+
+.expense-filter-form {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(8.5rem, 1fr));
+    gap: 0.65rem;
+    align-items: end;
+    width: min(100%, 52rem);
+}
+
+.expense-filter-form > div {
+    min-width: 0;
+}
+
+.expense-week-select {
+    min-width: 13rem;
+}
+
+.expense-period-summary {
+    display: flex;
+    min-height: 2rem;
+    flex-direction: column;
+    justify-content: end;
+    color: #17230c;
+}
+
+.expense-period-summary strong {
+    font-size: 0.88rem;
+    line-height: 1.2;
+}
+
+.expense-detail-summary {
+    display: grid;
+    grid-template-columns: minmax(14rem, 2fr) repeat(2, minmax(8rem, 1fr));
+    gap: 0.75rem;
+}
+
+.expense-detail-summary > div {
+    min-width: 0;
+    padding: 0.8rem;
+    border: 1px solid rgba(132, 204, 22, 0.22);
+    border-radius: 8px;
+    background: rgba(247, 254, 231, 0.72);
+}
+
+.expense-detail-summary span,
+.expense-detail-summary strong {
+    display: block;
+}
+
+.expense-detail-summary strong {
+    margin-top: 0.25rem;
+    color: #17230c;
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+}
+
+.expense-filter-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.expense-filter-actions .btn {
+    min-height: 2rem;
+    white-space: nowrap;
+}
+
+/* accounts.html and expenses.html: responsive table wrapper used with data-label cells. */
+.responsive-table-wrap {
+    width: 100%;
+    overflow: visible;
+}
+
+.responsive-data-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+}
+
+/* accounts.html: column widths for account name, type, balance, and actions. */
+.account-data-table th:nth-child(1),
+.account-data-table td:nth-child(1) {
+    width: 27%;
+}
+
+.account-data-table th:nth-child(2),
+.account-data-table td:nth-child(2) {
+    width: 21%;
+}
+
+.account-data-table th:nth-child(3),
+.account-data-table td:nth-child(3) {
+    width: 23%;
+}
+
+.account-data-table th:nth-child(4),
+.account-data-table td:nth-child(4) {
+    width: 29%;
+}
+
+.account-data-table .form-control,
+.account-data-table .form-select {
+    min-height: 2.45rem;
+    padding: 0.45rem 0.6rem;
+}
+
+.account-data-table .actions-cell {
+    min-width: 11rem;
+}
+
+/* expenses.html: column widths for date, category, account, note, amount, and actions. */
+.expense-data-table th:nth-child(1),
+.expense-data-table td:nth-child(1) {
+    width: 15%;
+}
+
+.expense-data-table th:nth-child(2),
+.expense-data-table td:nth-child(2) {
+    width: 17%;
+}
+
+.expense-data-table th:nth-child(3),
+.expense-data-table td:nth-child(3) {
+    width: 18%;
+}
+
+.expense-data-table th:nth-child(4),
+.expense-data-table td:nth-child(4) {
+    width: 20%;
+}
+
+.expense-data-table th:nth-child(5),
+.expense-data-table td:nth-child(5) {
+    width: 15%;
+}
+
+.expense-data-table th:nth-child(6),
+.expense-data-table td:nth-child(6) {
+    width: 15%;
+}
+
+/* accounts.html and expenses.html: lets long table values wrap instead of breaking layout. */
+.responsive-data-table th,
+.responsive-data-table td {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    vertical-align: middle;
+}
+
+.responsive-data-table .form-control,
+.responsive-data-table .form-select {
+    min-width: 0;
+}
+
+.responsive-data-table input.text-danger,
+.responsive-data-table input.border-danger {
+    border-color: #dc2626 !important;
+    background: #fff7f7;
+    box-shadow: inset 4px 0 0 #dc2626;
+}
+
+/* accounts.html and expenses.html: keeps update/edit/delete buttons wrapping neatly. */
+.table-actions {
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.45rem;
+}
+
+.table-actions .btn,
+.table-actions form {
+    min-width: 0;
+}
+
+.table-actions form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.table-actions .btn {
+    min-width: 5.9rem;
+    white-space: nowrap;
+}
+
+/* expenses.html and edit_expense.html: makes Bootstrap card headers blend into app cards. */
+.card-header.bg-white {
+    background: transparent !important;
+}
+
+/* edit_expense.html: button-like editor controls for updating a saved expense. */
+.edit-expense-card {
+    max-width: 100%;
+}
+
+.edit-expense-form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+}
+
+.edit-field {
+    min-width: 0;
+}
+
+.edit-field-wide {
+    grid-column: 1 / -1;
+}
+
+.edit-expense-form .form-label {
+    margin-bottom: 0.4rem;
+    color: #315018;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+}
+
+.edit-control {
+    min-height: 3.05rem;
+    border: 1px solid rgba(132, 204, 22, 0.36);
+    border-radius: 8px !important;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 254, 231, 0.88));
+    color: #17230c;
+    font-weight: 800;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72), 0 10px 20px rgba(77, 124, 15, 0.07);
+}
+
+.edit-control:hover {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, #ffffff, #ecfccb);
+    box-shadow: inset 0 0 0 1px rgba(236, 252, 203, 0.9), 0 12px 24px rgba(77, 124, 15, 0.11);
+}
+
+.edit-control:focus {
+    border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(132, 204, 22, 0.2), 0 14px 28px rgba(77, 124, 15, 0.13);
+}
+
+.edit-money-control {
+    align-items: stretch;
+    box-shadow: 0 10px 20px rgba(77, 124, 15, 0.07);
+}
+
+.edit-money-prefix {
+    min-height: 3.05rem;
+    border-color: rgba(132, 204, 22, 0.36);
+    border-radius: 8px 0 0 8px !important;
+    background: #ecfccb;
+    color: var(--primary-dark);
+    font-weight: 900;
+}
+
+.edit-money-control .edit-control {
+    border-left: 0;
+    border-radius: 0 8px 8px 0 !important;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+.edit-note-control {
+    min-height: 6.75rem;
+    resize: vertical;
+}
+
+.edit-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding-top: 0.25rem;
+}
+
+.edit-submit-button,
+.edit-cancel-button {
+    min-height: 2.9rem;
+    padding-inline: 1rem;
+    font-weight: 900;
+}
+
+/* Shared final card decoration used across dashboard, management pages, and auth pages. */
+.app-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(132, 204, 22, 0.22) !important;
+    border-radius: 8px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(250, 255, 244, 0.94)),
+        url("../img/card-texture.svg");
+    box-shadow: 0 14px 34px rgba(77, 124, 15, 0.08);
+}
+
+.app-card::before {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), rgba(236, 252, 203, 0));
+    content: "";
+    opacity: 0.75;
+}
+
+.app-card::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 5rem;
+    height: 5rem;
+    background:
+        linear-gradient(135deg, transparent 0 48%, rgba(236, 252, 203, 0.78) 48% 100%);
+    content: "";
+    pointer-events: none;
+}
+
+.app-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.app-card:hover {
+    border-color: rgba(132, 204, 22, 0.42) !important;
+    box-shadow: 0 22px 48px rgba(77, 124, 15, 0.13);
+    transform: translateY(-2px);
+}
+
+/* dashboard.html, accounts.html, categories.html, expenses.html, edit_expense.html: icon + title row. */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: #17230c;
+    font-size: 1.04rem;
+    font-weight: 800;
+}
+
+.title-icon {
+    width: 2.05rem;
+    height: 2.05rem;
+    background: linear-gradient(135deg, #ecfccb, #dcfce7);
+    color: var(--primary-dark);
+    box-shadow: inset 0 0 0 1px rgba(132, 204, 22, 0.2), 0 8px 18px rgba(132, 204, 22, 0.14);
+}
+
+/* dashboard.html: total balance, used money, and account count tiles. */
+.stat-tile .card-body {
+    display: grid;
+    gap: 0.35rem;
+}
+
+.stat-tile {
+    overflow: hidden;
+}
+
+.stat-tile::after {
+    position: absolute;
+    inset: auto 0 0 auto;
+    width: 7rem;
+    height: 4rem;
+    border-top-left-radius: 8px;
+    background: linear-gradient(135deg, rgba(236, 252, 203, 0.72), rgba(220, 252, 231, 0.18));
+    content: "";
+}
+
+.stat-tile .card-body {
+    position: relative;
+    z-index: 1;
+}
+
+.account-stat-tile {
+    cursor: pointer;
+}
+
+.stat-tile-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 8px;
+}
+
+.account-stat-tile .stat-icon,
+.account-stat-tile .text-secondary,
+.account-stat-tile strong {
+    position: relative;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.stat-tile-link:focus-visible {
+    outline: 3px solid rgba(132, 204, 22, 0.55);
+    outline-offset: -4px;
+}
+
+.stat-tile:hover {
+    transform: translateY(-3px);
+}
+
+.stat-icon {
+    width: 2.55rem;
+    height: 2.55rem;
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.bg-success-subtle,
+.bg-danger-subtle,
+.bg-primary-subtle {
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.7), 0 10px 22px rgba(77, 124, 15, 0.1);
+}
+
+/* dashboard.html: category and trend chart cards. */
+.chart-panel {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 254, 231, 0.78)),
+        url("../img/card-texture.svg");
+}
+
+.chart-panel .card-body {
+    position: relative;
+}
+
+.chart-panel .card-body::after {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    width: 5.5rem;
+    height: 2.7rem;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(220, 252, 231, 0.72), rgba(236, 252, 203, 0.32));
+    content: "";
+    pointer-events: none;
+}
+
+.chart-panel .section-title,
+.chart-panel canvas,
+.chart-panel .empty-state {
+    position: relative;
+    z-index: 1;
+}
+
+/* dashboard.html: account balance rows inside the dashboard account summary. */
+.account-row {
+    border-color: rgba(132, 204, 22, 0.16);
+    background: transparent;
+    border-radius: 8px;
+    transition: background-color 160ms ease, padding 160ms ease;
+}
+
+.account-row:hover {
+    background: rgba(247, 254, 231, 0.86);
+}
+
+/* accounts.html, categories.html, expenses.html, dashboard.html: final table polish. */
+.app-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.app-table thead th {
+    border-bottom: 1px solid rgba(132, 204, 22, 0.18);
+    background: linear-gradient(180deg, #f7fee7, #ecfccb);
+    color: #3f6212;
+    letter-spacing: 0.02em;
+}
+
+.app-table thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.app-table thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.app-table tbody tr {
+    box-shadow: inset 0 0 0 rgba(132, 204, 22, 0);
+    transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.app-table tbody tr:hover {
+    background: #fbfff5;
+    box-shadow: inset 4px 0 0 var(--primary);
+    transform: translateX(2px);
+}
+
+/* accounts.html, categories.html, expenses.html, edit_expense.html, login.html, register.html: form controls. */
+.form-control,
+.form-select,
+.input-group-text {
+    min-height: 2.8rem;
+    border-color: rgba(132, 204, 22, 0.24);
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    background-color: #fff;
+    box-shadow: 0 0 0 0.2rem rgba(132, 204, 22, 0.18), 0 10px 24px rgba(77, 124, 15, 0.08);
+}
+
+.form-control:hover,
+.form-select:hover,
+.account-choice:hover {
+    border-color: #b5cb98;
+}
+
+.form-label {
+    color: #2d3f1d;
+}
+
+/* accounts.html: final selected/unselected account mode option styling. */
+.account-choice {
+    min-height: 3.25rem;
+    border-color: rgba(132, 204, 22, 0.28);
+    background: linear-gradient(180deg, #fff, #fbfff5);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.account-choice:has(input:checked) {
+    border-color: var(--primary);
+    background: linear-gradient(135deg, #ecfccb, #f7fee7);
+    box-shadow: 0 10px 22px rgba(132, 204, 22, 0.16);
+}
+
+/* Shared final empty state used by pages with no data yet. */
+.empty-state {
+    min-height: 10rem;
+    padding: 1.4rem;
+    border-color: rgba(132, 204, 22, 0.32);
+    background:
+        linear-gradient(135deg, rgba(251, 255, 245, 0.94), rgba(240, 253, 244, 0.86));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.72);
+}
+
+/* login.html and register.html: auth page wrapper and card icon styling. */
+.auth-view {
+    position: relative;
+}
+
+.auth-card {
+    box-shadow: var(--shadow-lg);
+}
+
+.auth-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #fff;
+    font-size: 1.25rem;
+}
+
+/* base.html and dashboard.html: final alert styling including low balance warnings. */
+.alert {
+    border: 0;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.low-balance-alert,
+.alert-danger {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.low-balance-alert {
+    border-left: 4px solid #dc2626;
+}
+
+.badge {
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+/* dashboard.html: fixed chart heights for readable chart.js canvases. */
+.chart-canvas {
+    min-height: 260px;
+}
+
+.chart-panel {
+    max-width: 100%;
+}
+
+.chart-panel .card-body {
+    padding: 1rem;
+}
+
+.compact-chart {
+    min-height: 220px;
+}
+
+/* dashboard.html and categories.html: tighter outer spacing.
+   Change these values when you want those pages to feel more open or more compact. */
+.app-main.tight-main {
+    width: min(1260px, calc(100% - 0.5rem));
+    margin-top: 0.35rem;
+    margin-bottom: 0.5rem;
+    padding: 0.65rem;
+}
+
+.tight-main .page-hero {
+    min-height: 104px;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.75rem !important;
+}
+
+.tight-main .row {
+    --bs-gutter-x: 0.75rem;
+    --bs-gutter-y: 0.75rem;
+}
+
+.tight-main .mb-4 {
+    margin-bottom: 0.75rem !important;
+}
+
+.tight-main .app-card .card-body {
+    padding: 0.95rem;
+}
+
+.tight-main .stat-icon,
+.tight-main .title-icon {
+    width: 2.1rem;
+    height: 2.1rem;
+}
+
+/* home.html and get_started.html: final landing background override. */
+.landing-body {
+    background:
+        radial-gradient(circle at 18% 16%, rgba(132, 204, 22, 0.2), transparent 31%),
+        radial-gradient(circle at 88% 4%, rgba(22, 163, 74, 0.14), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #f7fee7 48%, #dcfce7 100%);
+}
+
+/* home.html and get_started.html: final landing frame corner and shadow polish. */
+.landing-frame,
+.start-frame {
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+}
+
+/* home.html: final card styling for landing finance preview widgets. */
+.metric-card,
+.analytics-card,
+.mini-card {
+    border: 1px solid rgba(250, 225, 236, 0.75);
+    border-radius: 8px;
+}
+
+.landing-outline,
+.landing-primary,
+.start-option {
+    border-radius: 8px;
+}
+
+.landing-outline:hover,
+.landing-primary:hover,
+.start-option:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.income-icon {
+    background: var(--accent);
+}
+
+.bill-icon {
+    background: var(--rose);
+}
+
+/* accounts.html and expenses.html: convert wide data tables into mobile card rows. */
+@media (max-width: 991.98px) {
+    .app-main.compact-main {
+        width: min(100% - 0.5rem, 1200px);
+        padding-top: 0.5rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .compact-main .app-card .card-header {
+        padding: 0.9rem 0.9rem 0;
+    }
+
+    .compact-main .app-card .card-body {
+        padding: 0.9rem;
+    }
+
+    .compact-hero {
+        margin-bottom: 0.75rem !important;
+        padding: 0.85rem;
+    }
+
+    .account-expense-layout {
+        --bs-gutter-x: 0.5rem;
+        --bs-gutter-y: 0.75rem;
+    }
+
+    .expense-entry-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .expense-note-field {
+        grid-column: 1 / -1;
+    }
+
+    .expense-save-button {
+        grid-column: 1 / -1;
+    }
+
+    .expense-filter-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+    }
+
+    .responsive-data-table {
+        display: block;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    .responsive-data-table thead {
+        display: none;
+    }
+
+    .responsive-data-table tbody,
+    .responsive-data-table tr,
+    .responsive-data-table td {
+        display: block;
+        width: 100% !important;
+    }
+
+    .responsive-data-table tbody {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .responsive-data-table tr {
+        border: 1px solid #edf2f7;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.78);
+        overflow: hidden;
+    }
+
+    .responsive-data-table td {
+        border-bottom: 1px solid #edf2f7;
+        padding: 0.7rem 0.75rem;
+        text-align: left !important;
+    }
+
+    .responsive-data-table td:last-child {
+        border-bottom: 0;
+    }
+
+    .responsive-data-table td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 0.35rem;
+        color: var(--muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .responsive-data-table .actions-cell {
+        padding-top: 0.75rem;
+    }
+
+    .responsive-data-table .table-actions {
+        justify-content: stretch !important;
+    }
+
+    .responsive-data-table .table-actions .btn,
+    .responsive-data-table .table-actions form {
+        flex: 1 1 8rem;
+    }
+
+    .responsive-data-table .table-actions form {
+        display: flex;
+    }
+
+    .responsive-data-table .table-actions .btn {
+        width: 100%;
+    }
+}
+
+/* All templates: final phone/tablet layout adjustments. */
+@media (max-width: 800px) {
+    .app-main {
+        width: min(100% - 1rem, 1200px);
+        padding-top: 1rem;
+    }
+
+    .page-hero {
+        min-height: auto;
+    }
+
+    .dashboard-day-details-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-day-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-form-toggle {
+        width: 100%;
+    }
+
+    .expense-entry-form {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-filter-form {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-detail-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-filter-actions .btn {
+        flex: 1 1 auto;
+    }
+
+    .expense-week-select {
+        min-width: 0;
+    }
+
+    .edit-expense-form {
+        grid-template-columns: 1fr;
+    }
+
+    .edit-actions .btn {
+        width: 100%;
+    }
+
+    .recent-expenses-actions,
+    .recent-category-form,
+    .recent-category-select {
+        width: 100%;
+    }
+
+    .recent-expenses-actions .btn {
+        width: 100%;
+    }
+
+    .btn-group {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .btn-group .btn {
+        flex: 1 1 auto;
+    }
+
+    .landing-frame,
+    .start-frame {
+        border-radius: 8px;
+    }
+}

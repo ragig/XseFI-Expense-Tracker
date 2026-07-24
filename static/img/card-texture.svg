@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="240" viewBox="0 0 560 240" role="img" aria-label="Subtle card texture">
+  <defs>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#246bfe" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+  <rect width="560" height="240" fill="url(#wash)"/>
+  <g fill="none" stroke="#246bfe" stroke-opacity="0.08" stroke-width="2">
+    <path d="M28 190h80v-64h-80zM136 190h80v-110h-80zM244 190h80v-84h-80z"/>
+    <path d="M374 166c32-62 66-82 102-60 24 15 39 5 56-35"/>
+  </g>
+  <g fill="#0f766e" fill-opacity="0.08">
+    <circle cx="454" cy="56" r="46"/>
+    <circle cx="510" cy="92" r="26"/>
+  </g>
+</svg>

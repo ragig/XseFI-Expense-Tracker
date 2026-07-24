@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Categories | Expense Tracker{% endblock %}
+{% block main_class %}tight-main{% endblock %}
+
+{% block content %}
+<section class="page-hero mb-4">
+    <div>
+        <p class="text-uppercase text-secondary fw-bold small mb-1">Create, edit, and organize expense groups</p>
+        <h1 class="fw-bold mb-1">Categories</h1>
+        <p class="text-secondary mb-0">Group expenses so your dashboard tells a useful story.</p>
+    </div>
+</section>
+
+<section class="row g-4">
+    <div class="col-lg-4">
+        <article class="card app-card">
+            <div class="card-body">
+                <h2 class="section-title mb-3"><span class="title-icon"><svg class="icon"><use href="#icon-plus"></use></svg></span>Add Category</h2>
+                <form method="post" class="vstack gap-3">
+                    <div>
+                        <label class="form-label fw-semibold">Category Name</label>
+                        <input class="form-control" type="text" name="name" placeholder="Example: Groceries" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit"><svg class="icon"><use href="#icon-plus"></use></svg>Add Category</button>
+                </form>
+            </div>
+        </article>
+    </div>
+
+    <div class="col-lg-8">
+        <article class="card app-card">
+            <div class="card-body">
+                <h2 class="section-title mb-3"><span class="title-icon"><svg class="icon"><use href="#icon-tag"></use></svg></span>Your Categories</h2>
+                {% if categories %}
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle app-table mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Usage</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in categories %}
+                                    <tr>
+                                        <td><span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">{{ category['name'] }}</span></td>
+                                        <td>{{ category["expense_count"] }} expenses</td>
+                                        <td>Rs. {{ "%.2f"|format(category["total"]) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state"><p class="text-secondary mb-0">No categories yet.</p></div>
+                {% endif %}
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Expenses | Expense Tracker{% endblock %}
+{% block main_class %}compact-main{% endblock %}
+
+{% block content %}
+{% set active_selected_date = selected_date|default(today) %}
+{% set active_date_from = date_from|default(active_selected_date) %}
+{% set active_date_to = date_to|default(active_selected_date) %}
+{% set active_selected_month = selected_month|default(active_selected_date[:7]) %}
+{% set active_selected_year = selected_year|default(active_selected_date[:4]) %}
+<section class="page-hero compact-hero mb-3">
+    <div>
+        <p class="text-uppercase text-secondary fw-bold small mb-1">Books, phone, food, shopping, and more</p>
+        <h1 class="fw-bold mb-1">Expenses</h1>
+        <p class="text-secondary mb-0">Add spending and review your saved expense history.</p>
+    </div>
+    {% if accounts %}
+        <button class="btn btn-success expense-form-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#addExpensePanel" aria-expanded="false" aria-controls="addExpensePanel">
+            <svg class="icon"><use href="#icon-plus"></use></svg>Add Expense
+        </button>
+    {% else %}
+        <a class="btn btn-primary" href="{{ url_for('accounts') }}"><svg class="icon"><use href="#icon-plus"></use></svg>Add Account</a>
+    {% endif %}
+</section>
+
+{% if accounts %}
+    <section class="collapse mb-3" id="addExpensePanel">
+        <article class="card app-card expense-entry-card">
+            <div class="card-header bg-white border-0 pb-0">
+                <h2 class="section-title mb-1"><span class="title-icon"><svg class="icon"><use href="#icon-plus"></use></svg></span>Add Expense</h2>
+                <p class="text-secondary small mb-0">Record a new transaction.</p>
+            </div>
+            <div class="card-body">
+                <form method="post" class="expense-entry-form">
+                    <div>
+                        <label class="form-label fw-semibold">Account</label>
+                        <select class="form-select" name="account_id" required>
+                            {% for account in accounts %}
+                                <option value="{{ account['id'] }}">{{ account["name"] }} - {{ account["type"] }} - Rs. {{ "%.2f"|format(account["balance"]) }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold">Category</label>
+                        <select class="form-select" name="category" required>
+                            {% for category in categories %}
+                                <option value="{{ category['name'] }}">{{ category["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold">Amount</label>
+                        <div class="input-group">
+                            <span class="input-group-text">Rs.</span>
+                            <input class="form-control" type="number" name="amount" min="0.01" step="0.01" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label fw-semibold">Date</label>
+                        <input class="form-control" type="date" name="spent_on" value="{{ today }}" required>
+                    </div>
+                    <div class="expense-note-field">
+                        <label class="form-label fw-semibold">Note</label>
+                        <textarea class="form-control" name="note" rows="3" placeholder="Optional"></textarea>
+                    </div>
+                    <button class="btn btn-primary expense-save-button" type="submit"><svg class="icon"><use href="#icon-receipt"></use></svg>Save Expense</button>
+                </form>
+            </div>
+        </article>
+    </section>
+{% else %}
+    <section class="card app-card mb-3">
+        <div class="card-body">
+            <div class="empty-state">
+                <p class="text-secondary mb-0">Create an account before adding expenses.</p>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<section class="row g-3 account-expense-layout">
+    <div class="col-12">
+        <article class="card app-card h-100">
+            <div class="card-header bg-white border-0 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 pb-0">
+                <div>
+                    <h2 class="section-title mb-1"><span class="title-icon"><svg class="icon"><use href="#icon-receipt"></use></svg></span>Your Expenses</h2>
+                    <p class="text-secondary small mb-0">{{ expenses|length }} saved transactions</p>
+                </div>
+                <form method="get" class="expense-filter-form">
+                    <div class="expense-category-control">
+                        <label class="form-label small mb-1 text-secondary" for="expense-category">Category</label>
+                        <select class="form-select form-select-sm expense-filter-control" id="expense-category" name="category">
+                            <option value="" {{ 'selected' if not active_category else '' }}>All categories</option>
+                            {% for category in categories %}
+                                <option value="{{ category['name'] }}" {{ 'selected' if active_category == category['name'] else '' }}>{{ category['name'] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="expense-period-control">
+                        <label class="form-label small mb-1 text-secondary" for="expense-period">Date filter</label>
+                        <select class="form-select form-select-sm" id="expense-period" name="period">
+                            <option value="all" {{ 'selected' if period == 'all' else '' }}>All time</option>
+                            <option value="daily" {{ 'selected' if period == 'daily' else '' }}>Daily</option>
+                            <option value="weekly" {{ 'selected' if period == 'weekly' else '' }}>Weekly</option>
+                            <option value="monthly" {{ 'selected' if period == 'monthly' else '' }}>Monthly</option>
+                            <option value="yearly" {{ 'selected' if period == 'yearly' else '' }}>Yearly</option>
+                        </select>
+                    </div>
+                    <div class="expense-date-control" data-period-control="daily" {{ 'hidden' if period != 'daily' else '' }}>
+                        <label class="form-label small mb-1 text-secondary" for="expense-selected-date">Calendar date</label>
+                        <input class="form-control form-control-sm expense-filter-control" id="expense-selected-date" type="date" name="selected_date" value="{{ active_selected_date }}">
+                    </div>
+                    <div class="expense-date-control" data-period-control="weekly" {{ 'hidden' if period != 'weekly' else '' }}>
+                        <label class="form-label small mb-1 text-secondary" for="expense-date-from">From date</label>
+                        <input class="form-control form-control-sm expense-filter-control" id="expense-date-from" type="date" name="date_from" value="{{ active_date_from }}">
+                    </div>
+                    <div class="expense-date-control" data-period-control="weekly" {{ 'hidden' if period != 'weekly' else '' }}>
+                        <label class="form-label small mb-1 text-secondary" for="expense-date-to">To date</label>
+                        <input class="form-control form-control-sm expense-filter-control" id="expense-date-to" type="date" name="date_to" value="{{ active_date_to }}">
+                    </div>
+                    <div class="expense-date-control" data-period-control="monthly" {{ 'hidden' if period != 'monthly' else '' }}>
+                        <label class="form-label small mb-1 text-secondary" for="expense-selected-month">Month</label>
+                        <input class="form-control form-control-sm expense-filter-control" id="expense-selected-month" type="month" name="selected_month" value="{{ active_selected_month }}">
+                    </div>
+                    <div class="expense-date-control" data-period-control="yearly" {{ 'hidden' if period != 'yearly' else '' }}>
+                        <label class="form-label small mb-1 text-secondary" for="expense-selected-year">Year</label>
+                        <input class="form-control form-control-sm expense-filter-control" id="expense-selected-year" type="number" name="selected_year" min="1900" max="2100" value="{{ active_selected_year }}">
+                    </div>
+                    <div class="expense-period-summary">
+                        <span class="form-label small mb-1 text-secondary">Showing</span>
+                        <strong>{{ period_summary|default('All saved expenses') }}</strong>
+                    </div>
+                    <div class="expense-filter-actions">
+                        <button class="btn btn-sm btn-success" type="submit">Apply</button>
+                        <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('expenses') }}">Reset</a>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <section class="expense-detail-summary mb-3" aria-label="Filtered expense details">
+                    <div>
+                        <span class="text-secondary small fw-bold">Showing</span>
+                        <strong>{{ period_summary|default('All saved expenses') }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-secondary small fw-bold">Transactions</span>
+                        <strong>{{ expenses|length }}</strong>
+                    </div>
+                    <div>
+                        <span class="text-secondary small fw-bold">Total amount</span>
+                        <strong>Rs. {{ "%.2f"|format(expense_total|default(0)) }}</strong>
+                    </div>
+                </section>
+                {% if expenses %}
+                    <div class="responsive-table-wrap">
+                        <table class="table table-hover align-middle app-table responsive-data-table expense-data-table mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Account</th>
+                                    <th>Note</th>
+                                    <th>Amount</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for expense in expenses %}
+                                    <tr>
+                                        <td data-label="Date">{{ expense["spent_on"] }}</td>
+                                        <td data-label="Category"><span class="badge rounded-pill text-bg-primary-subtle text-primary-emphasis">{{ expense["category"] }}</span></td>
+                                        <td data-label="Account">{{ expense["account_name"] }}</td>
+                                        <td data-label="Note" class="text-secondary">{{ expense["note"] or "-" }}</td>
+                                        <td data-label="Amount" class="fw-bold">Rs. {{ "%.2f"|format(expense["amount"]) }}</td>
+                                        <td data-label="Actions" class="text-end actions-cell">
+                                            <div class="d-flex justify-content-end gap-2 table-actions">
+                                                <a class="btn btn-sm btn-outline-primary" href="{{ url_for('edit_expense', expense_id=expense['id']) }}"><svg class="icon"><use href="#icon-edit"></use></svg>Edit</a>
+                                                <form method="post" action="{{ url_for('delete_expense', expense_id=expense['id']) }}">
+                                                    <button class="btn btn-sm btn-outline-danger" type="submit"><svg class="icon"><use href="#icon-trash"></use></svg>Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state">
+                        <p class="text-secondary mb-0">{{ empty_expense_message|default('No details found for this filter.') }}</p>
+                    </div>
+                {% endif %}
+            </div>
+        </article>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (() => {
+        const periodSelect = document.querySelector("#expense-period");
+        const filterForm = document.querySelector(".expense-filter-form");
+        const dateControls = document.querySelectorAll("[data-period-control]");
+        const dateInputs = document.querySelectorAll(".expense-date-control input");
+
+        function syncPeriodControls() {
+            const activePeriod = periodSelect?.value || "all";
+            dateControls.forEach((control) => {
+                const isActive = control.dataset.periodControl === activePeriod;
+                control.hidden = !isActive;
+                control.querySelectorAll("input, select").forEach((input) => {
+                    input.disabled = !isActive;
+                });
+            });
+        }
+
+        function submitFilter() {
+            filterForm?.requestSubmit();
+        }
+
+        document.querySelector("#expense-category")?.addEventListener("change", submitFilter);
+        periodSelect?.addEventListener("change", () => {
+            syncPeriodControls();
+            submitFilter();
+        });
+        dateInputs.forEach((input) => {
+            input.addEventListener("change", submitFilter);
+        });
+        syncPeriodControls();
+    })();
+</script>
+{% endblock %}
